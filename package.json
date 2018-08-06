@@ -2,7 +2,7 @@
   "name": "crystal-dashboard",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jslancerteam.github.io/crystal-dashboard",
+  "homepage": "https://www.achilisdash.com",
   "dependencies": {
     "animate.css": "^3.5.2",
     "autoprefixer": "7.1.2",
