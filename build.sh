@@ -4,10 +4,10 @@
 docker build -t achilis .
 
 # tag with repo
-#docker tag achilis:latest pankajchandan/achilis:latest
+docker tag achilis:latest pankajchandan/achilis:latest
 
 # do docker login here if pushing to remote registry
-#docker login
+docker login
 
 # push here
-#docker push pankajchandan/achcilis:latest
+docker push pankajchandan/achilis:latest
