@@ -10,4 +10,4 @@ docker build -t achilis .
 #docker login
 
 # push here
-#docker push pankajchandan/achcore:latest
+#docker push pankajchandan/achcilis:latest
