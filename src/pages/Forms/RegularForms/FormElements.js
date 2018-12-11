@@ -2,6 +2,9 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import renderField from 'components/FormInputs/renderField';
 
+
+
+
 const FormElements = () => (
   <div className="card">
     <div className="header">
@@ -9,6 +12,26 @@ const FormElements = () => (
     </div>
     <div className="content">
       <form className="form-horizontal">
+
+          <img height={500} src="https://image.ibb.co/dr2cSf/first.png" alt="first" border="0"></img>
+          {/*<img src="https://image.ibb.co/hSvHcf/16.png" alt="16" border="0"></img>
+          <img src="https://image.ibb.co/noViHf/15.png" alt="15" border="0"></img>
+          <img src="https://image.ibb.co/fPEAxf/14.png" alt="14" border="0"></img>
+          <img src="https://image.ibb.co/hD2xcf/13.png" alt="13" border="0"></img>
+          <img src="https://image.ibb.co/jQzccf/12.png" alt="12" border="0"></img>
+          <img src="https://image.ibb.co/nOD3Hf/11.png" alt="11" border="0"></img>
+          <img src="https://image.ibb.co/i2eccf/10.png" alt="10" border="0"></img>
+          <img src="https://image.ibb.co/dm3QV0/9.png" alt="9" border="0"></img>
+          <img src="https://image.ibb.co/f6i3Hf/8.png" alt="8" border="0"></img>
+          <img src="https://image.ibb.co/fr83Hf/7.png" alt="7" border="0"></img>
+          <img src="https://image.ibb.co/kk7xcf/6.png" alt="6" border="0"></img>
+          <img src="https://image.ibb.co/dpDEOL/5.png" alt="5" border="0"></img>
+          <img src="https://image.ibb.co/fmjzq0/4.png" alt="4" border="0"></img>
+          <img src="https://image.ibb.co/d6CkV0/3.png" alt="3" border="0"></img>
+          <img src="https://image.ibb.co/n75TiL/2.png" alt="2" border="0"></img>
+          <img src="https://image.ibb.co/ffLuOL/1.png" alt="1" border="0"></img>*/}
+
+
         <div className="form-group">
           <label className="control-label col-md-3">With help</label>
           <div className="col-md-9">

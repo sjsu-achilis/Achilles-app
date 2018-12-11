@@ -7,7 +7,7 @@ const Header = ({
   showMobileMenu,
   toggleMobileNavVisibility
 }) => (
-    <Navbar style={{backgroundColor: "#953600"}} fluid={true} >
+    <Navbar style={{backgroundColor: 'white'}} fluid={true} >
       <Navbar.Header>
         <button type="button" className="navbar-toggle" data-toggle="collapse" onClick={toggleMobileNavVisibility}>
           <span className="sr-only">Toggle navigation</span>

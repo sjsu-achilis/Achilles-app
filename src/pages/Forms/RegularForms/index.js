@@ -22,7 +22,9 @@ const RegularForms = () => (
           disabledChecked: true,
           radioOnOff: 'on',
           radioDisabledOnOff: 'on'
-        }} />
+        }}
+
+        />
       </div>
     </div>
   </div>

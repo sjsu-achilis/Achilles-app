@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import events from '../../pages/Events'
+import dates from '../../pages/dates'
 
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
@@ -9,100 +11,85 @@ BigCalendar.setLocalizer(
 
 let allViews = Object.keys(BigCalendar.views).map(k => BigCalendar.views[k])
 
-const events = [
-  {
-    'title': 'All Day Event',
-    'allDay': true,
-    'start': new Date(2018, 6, 0),
-    'end': new Date(2018, 6, 1)
-  },
-  {
-    'title': 'Long Event',
-    'start': new Date(2018, 6, 6),
-    'end': new Date(2018, 6, 10)
-  },
+class Calendar extends Component {
+    constructor(props) {
+        super(props);
 
-  {
-    'title': 'DTS STARTS',
-    'start': new Date(2016, 2, 16, 0, 0, 0),
-    'end': new Date(2016, 2, 20, 0, 0, 0)
-  },
+        this.state = {events: events,startTime:'',endTime:'',eventname:''};
+        this.handleClick = this.handleClick.bind(this);
 
-  {
-    'title': 'DTS ENDS',
-    'start': new Date(2016, 10, 6, 0, 0, 0),
-    'end': new Date(2016, 10, 16, 0, 0, 0)
-  },
 
-  {
-    'title': 'Some Event',
-    'start': new Date(2018, 6, 9, 0, 0, 0),
-    'end': new Date(2018, 6, 9, 0, 0, 0)
-  },
-  {
-    'title': 'Conference',
-    'start': new Date(2018, 6, 11),
-    'end': new Date(2018, 6, 16),
-    desc: 'Big conference for important people'
-  },
-  {
-    'title': 'Meeting',
-    'start': new Date(2018, 6, 12, 10, 60, 0, 0),
-    'end': new Date(2018, 6, 12, 12, 60, 0, 0),
-    desc: 'Pre-meeting meeting, to prepare for the meeting'
-  },
-  {
-    'title': 'Lunch',
-    'start':new Date(2018, 6, 12, 12, 0, 0, 0),
-    'end': new Date(2018, 6, 12, 16, 0, 0, 0),
-    desc: 'Power lunch'
-  },
-  {
-    'title': 'Meeting',
-    'start':new Date(2018, 6, 12,14, 0, 0, 0),
-    'end': new Date(2018, 6, 12,15, 0, 0, 0)
-  },
-  {
-    'title': 'Happy Hour',
-    'start':new Date(2018, 6, 12, 16, 0, 0, 0),
-    'end': new Date(2018, 6, 12, 16, 60, 0, 0),
-    desc: 'Most important meal of the day'
-  },
-  {
-    'title': 'Dinner',
-    'start':new Date(2018, 6, 12, 20, 0, 0, 0),
-    'end': new Date(2018, 6, 12, 21, 0, 0, 0)
-  },
-  {
-    'title': 'Birthday Party',
-    'start':new Date(2018, 6, 16, 6, 0, 0),
-    'end': new Date(2018, 6, 16, 10, 60, 0)
-  },
-  {
-    'title': 'Late Night Event',
-    'start':new Date(2018, 6, 16, 19, 60, 0),
-    'end': new Date(2018, 6, 18, 2, 0, 0)
-  },
-  {
-    'title': 'Multi-day Event',
-    'start':new Date(2018, 6, 20, 19, 60, 0),
-    'end': new Date(2018, 6, 22, 2, 0, 0)
-  }
-]
+    }
+    componentWillMount() {
 
-const Calendar = () => (
-  <div className="content">
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-12">
-          <BigCalendar
-            events={events}
-            views={allViews}
-            defaultDate={new Date()} />
-        </div>
-      </div>
-    </div>
-  </div>
-);
+    }
+
+    handleClick(event) {
+       console.log(this.state.startTime.split('-')[2].split('T')[1],this.state.endTime.split('-')[0],this.state.endTime.split('-')[1]);
+       var newevent=
+           {
+               id: 24   ,
+               title: this.state.eventname,
+               start: new Date(this.state.startTime.split('-')[0], this.state.startTime.split('-')[1]-1, this.state.startTime.split('-')[2].split('T')[0], this.state.startTime.split('-')[2].split('T')[1].split(':')[0], this.state.startTime.split('-')[2].split('T')[1].split(':')[1]),
+               end: new Date(this.state.endTime.split('-')[0], this.state.endTime.split('-')[1]-1, this.state.endTime.split('-')[2].split('T')[0], this.state.endTime.split('-')[2].split('T')[1].split(':')[0], this.state.endTime.split('-')[2].split('T')[1].split(':')[1]),
+           }
+      var newevents=this.state.events;
+
+            newevents.push(newevent);
+        console.log(newevent,newevents)
+this.setState({events:newevents})
+
+    }
+
+    render() {
+        return (
+            <div className="content">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className='card'>
+                                <div className="row">
+                                    <div className="col-md-1"></div>
+                                    <div className="col-md-9">
+                                        <h4 style={{color: 'red'}}>Create an event :</h4>
+                                        <br></br>
+
+                                        Event Name
+                                        <input  onChange={ e => this.setState({ eventname : e.target.value }) } type="text"/>
+                                        <br></br>
+                                        <br></br>
+                                        <b>StartTime</b>
+                                        <input   onChange={ e => this.setState({ startTime : e.target.value }) } type="datetime-local" name="bdaytime"/>
+                                        <b style={{marginLeft: 10}}> EndTime</b>
+                                        <input  onChange={ e => this.setState({ endTime : e.target.value }) }  type="datetime-local" name="bdaytime"/>
+
+                                        <button onClick={this.handleClick} type="submit"
+                                                className="btn btn-info btn-fill pull-right">Create Event
+                                        </button>
+
+                                        <br></br>
+                                        <br></br>
+                                        <br></br>
+                                    </div>
+                                </div>
+                            </div>
+                            {this.state.events.length}
+                            <BigCalendar
+                                events={this.state.events}
+                                views={allViews}
+                                defaultView='week'
+                                defaultDate={new Date()}
+                                step={60}
+                                showMultiDayTimes
+
+
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
 
 export default Calendar;

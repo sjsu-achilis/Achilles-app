@@ -13,6 +13,7 @@ import MobileMenu from '../../components/MobileMenu';
 /**
  * Pages
  */
+import Sessionanal from '../Sessionanal';
 import Dashboard from '../Dashboard';
 import Components from '../Components';
 import UserProfile from '../UserProfile';
@@ -50,6 +51,7 @@ const Main = ({
           <Route path="/maps" component={MapsPage} />
           <Route path="/charts" component={Charts} />
           <Route path="/calendar" component={Calendar} />
+            <Route path="/session" component={Sessionanal} />
           <Footer />
         </div>
       </div>

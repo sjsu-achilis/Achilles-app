@@ -11,7 +11,21 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
     <script src="https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=AIzaSyCSLXG5j-CqSB0zR476bJFXOSQ9sWuXqH0"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+<!-- Firebase App is always required and must be first -->
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
+
+<!-- Add additional services that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-messaging.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-functions.js"></script>
+<!------ Include the above in your HEAD tag ---------->
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
@@ -33,7 +47,382 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div id="root"></div>
+
+<style>
+
+.slidecontainer {
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+
+.panel-login {
+	border-color: #ccc;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+.panel-login>.panel-heading {
+	color: #00415d;
+	background-color: #fff;
+	border-color: #fff;
+	text-align:center;
+}
+.panel-login>.panel-heading a{
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.panel-login>.panel-heading a.active{
+	color: #029f5b;
+	font-size: 18px;
+}
+.panel-login>.panel-heading hr{
+	margin-top: 10px;
+	margin-bottom: 0px;
+	clear: both;
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+	background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+	height: 45px;
+	border: 1px solid #ddd;
+	font-size: 16px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.panel-login input:hover,
+.panel-login input:focus {
+	outline:none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-color: #ccc;
+}
+.btn-login {
+	background-color: #59B2E0;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #59B2E6;
+}
+.btn-login:hover,
+.btn-login:focus {
+	color: #fff;
+	background-color: #53A3CD;
+	border-color: #53A3CD;
+}
+.forgot-password {
+	text-decoration: underline;
+	color: #888;
+}
+.forgot-password:hover,
+.forgot-password:focus {
+	text-decoration: underline;
+	color: #666;
+}
+
+.btn-register {
+	background-color: #1CB94E;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #1CB94A;
+}
+.btn-register:hover,
+.btn-register:focus {
+	color: #fff;
+	background-color: #1CA347;
+	border-color: #1CA347;
+}
+
+</style>
+<div id="container1"    style="display: none;"   class="container" >
+    	<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="#" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div id="login-form"   style="display: block;">
+									<div class="form-group">
+										<input type="text" name="username" id="usernamelogin" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="passwordlogin" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+
+
+
+									<div class="form-group text-center">
+										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+										<label for="remember"> Remember Me</label>
+									</div>
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit"  name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											</div>
+										</div>
+
+									<div class="form-group">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="text-center">
+													<a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div id="register-form" action="https://phpoll.com/register/process" method="post" role="form" style="display: none;">
+									<div class="form-group">
+										<input type="text" name="username" id="usernamesignup" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+                                    										<input type="text" name="name"  id="namesignup" tabindex="1" class="form-control" placeholder="Name" value="">
+                                    									</div>
+									<div class="form-group">
+										<input type="email" name="email" id="emailsignup" tabindex="1" class="form-control" placeholder="Email Address" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="passwordsignup" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+									</div>
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+	<div id="container2"  style="display:none"  class="container">
+        	<div class="row">
+    			<div class="col-md-6 col-md-offset-3">
+    				<div class="panel panel-login">
+    					<div class="panel-heading">
+
+    						<hr>
+    					</div>
+    					<div class="panel-body">
+    						<div class="row">
+    							<div class="col-lg-12">
+    								<div id="question-form"   style="display: block;">
+
+
+
+
+
+
+<form>
+
+    									<div class="form-group">
+                                                                            									<input   type="radio" id="roleathelete" name="rolecheck">Athelete
+
+
+                                                                                                                									<input type="radio" id="rolecoach" name="rolecheck" >Coach
+
+                                                                            									</div>
+
+                                                                            									<div id="selectathelete" class="form-group" style="display: none">
+                                                                            									<select  id='selecttype' name="cars" ></select>
+
+                                                                                                                                                                                                                                </select>
+
+                                                                                                                </div>
+
+                                                                                                                <div id="selectathelete2" class="form-group" style="display: none">
+                                                                                                                <label>Select all your atheletes ids
+                                                                                                                </label>
+                                                                                                                <br>
+                                                                                                                                                                                            									<select  id='selecttype2' name="cars" multiple></select>
+
+                                                                                                                                                                                                                                                                                                                                                </select>
+
+                                                                                                                                                                                                                                </div>
+                                                                            									</form>
+
+
+
+                                                                            									<form id="dismissathelete">
+
+                                                                                                                    									<div class="form-group">
+                                                                                                                                                                                            									<input   type="radio" id="Male" name="gendercheck">M
+
+
+                                                                                                                                                                                                                                									<input type="radio" id="Female" name="gendercheck" >F
+
+                                                                                                                                                                                            									</div>
+
+    									<div class="form-group r">
+    										<label for="org"> ORGANIZATION</label>
+    										<input style='height:21px' type="text" tabindex="3" class="" name="org" id="org">
+
+    									</div>
+    									<div class="form-group ">
+    									<label for="org"> Age</label>
+
+                                            <input style='height:21px' type="number" tabindex="3" class="" name="age" id="age">
+
+                                            									</div>
+
+                                                                                                                            									<div class="form-group ">
+
+                                                  </div><div class="form-group ">
+                                                                                                                                     									<label for="gender"> height</label>
+                                                                                                                                                                             										<input style='height:21px' type="text" tabindex="3" class="" name="Height" id="Height">
+
+                                                                                                                                                                             									</div>
+
+                                                        <div class="form-group ">
+                                                                                                                                                                                             									<label for="Weight"> weight</label>
+                                                                                                                                                                                                                                     										<input style='height:21px' type="text" tabindex="3" class="" name="Weight" id="Weight">
+
+                                                                                                                                                                                                                                     									</div>
+
+
+
+
+                                                                                                                                                                             									                                                                                                                                                         										 </div>
+
+<div id="dismissathelete2" class="form-group ">
+				<label id="dismissathelete"  for="Sports"> Select sports</label>
+<select id="options">
+</select>
+</div>
+
+    										<div id="dismissathelete3" class="row">
+    											<div class="col-sm-6 col-sm-offset-3">
+    												<input type="button"  name="login-submit" id="form-submit" tabindex="4" class="form-control btn btn-login" value="Submit Details">
+    											</div>
+    										</div>
+
+
+    										<div id="dismissathelete3coach" style="display: none" class="row">
+                                                											<div class="col-sm-6 col-sm-offset-3">
+                                                												<button  type="button" tabindex="4" class="form-control btn btn-login" value="Add Atheletes">Add Atheletes</button>
+                                                											</div>
+                                                										</div>
+
+
+    										<div id="showathelete2" style='display: none' class="row">
+                                                											<div class="col-sm-6 col-sm-offset-3">
+                                                												<input type="submit"  id="selectatheletes" name="login-submit" id="form-submit" tabindex="4" class="form-control btn btn-login" value="Select atheletes">
+                                                											</div>
+                                                										</div>
+
+    									</div>
+
+    								</div>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+
+    <div id="container3"  style="display: none;" class="container">
+                        	<div class="row">
+                    			<div class="col-md-6 col-md-offset-3">
+                    				<div class="panel panel-login">
+                    					<div class="panel-heading">
+
+                    						<hr>
+                    					</div>
+                    					<div class="panel-body">
+                    						<div class="row">
+                    							<div class="col-lg-12">
+                    							<div id ='questionform'>
+
+
+                                                        </div>
+                    										<div class="row">
+                    											<div class="col-sm-6 col-sm-offset-3">
+                    												<input type="submit"  name="login-submit" id="form-submit2" tabindex="4" class="form-control btn btn-login" value="Submit Details">
+                    											</div>
+                    										</div>
+
+                    									</div>
+
+                    								</div>
+                    							</div>
+                    						</div>
+                    					</div>
+                    				</div>
+                    			</div>
+
+
+ 	<div    id="root"></div>
+
+ 	<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+
      <!-- TRACKING WHO VISIT MY LIVE DEMO PAGE. PLEASE REMOVE THE LINE BELOW IF YOU ARE GOING TO USE IN YOUR PROJECT -->
     <!-- Facebook Pixel Code -->
     <script>
@@ -47,7 +436,495 @@
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '1567561193573896');
       fbq('track', 'PageView');
-    </script>
+
+
+var responetext=[{"qst": "Do you smoke?", "q_id": "1"}, {"qst": "Do you drink alcohol more than twice a week?", "q_id": "2"}, {"qst": "Do you do any recreational drugs?", "q_id": "3"}, {"qst": "Do you sleep for atleast 7 hours at night?", "q_id": "4"}, {"qst": "Do you eat 3 or more meals a day?", "q_id": "5"}]
+
+       var div = document.getElementById('questionform');
+                                                                                                                                                                                 var fragment = document.createDocumentFragment();
+
+                                                                                                                                                                                 responetext.forEach(function(option, index) {
+                                                                                                                                                                                     var div2 = document.createElement('div');
+                                                                                                                                                                                     var div3 = document.createElement('div');
+                                                                                                                                                                                     var label1=document.createElement('label');
+                                                                                                                                                                                      var label2=document.createElement('label');
+                                                                                                                                                                                     var radio1 = document.createElement('input');
+                                                                                                                                                                                      var radio2=document.createElement('input');
+
+                                                                                                                                                                                     div3.innerHTML = option.qst;
+                                                                                                                                                                                     label1.innerHTML='Yes&nbsp';
+
+                                                                                                                                                                                     label2.innerHTML='&nbspNo&nbsp';
+                                                                                                                                                                                     div3.id=option.q_id;
+                                                                                                                                                                                     radio1.type='radio'
+                                                                                                                                                                                     radio2.type='radio'
+                                                                                                                                                                                     radio1.id=option.q_id+'Y';
+                                                                                                                                                                                     radio2.id=option.q_id+'N'
+
+                                                                                                                                                                                     div2.appendChild(div3);
+                                                                                                                                                                                     div2.appendChild(label1);
+
+                                                                                                                                                                                     div2.appendChild(radio1);
+                                                                                                                                                                                      div2.appendChild(label2);
+                                                                                                                                                                                     div2.appendChild(radio2);
+
+                                                                                                                                                                                     fragment.appendChild(div2);
+                                                                                                                                                                                 });
+
+                                                                                                                                                                                 div.appendChild(fragment);
+
+  // this is derived from
+  // http://stackoverflow.com/questions/15167981/how-do-i-use-firebase-simple-login-with-email-password/15167983#15167983
+
+  $(function() {
+var requestform22 = new XMLHttpRequest();
+
+  requestform22.onreadystatechange = function () {
+
+              // Begin accessing JSON data here
+             if (this.readyState == 4 && this.status == 200) {
+                  // console.log(this.responseText);
+
+
+
+                     var div2 = document.createElement('div');
+                                             JSON.parse(this.responseText).forEach(function(option){
+                                                 var div3 = document.createElement('option');
+                                                 console.log(option);
+                                                 div3.innerHTML=option.type;
+                                                 div3.value=option.type_id;
+
+
+ document.getElementById('selecttype').appendChild(div3)
+
+                                             })
+
+                   }
+                   }
+
+      requestform22.open('GET', ' http://ec2-54-201-123-10.us-west-2.compute.amazonaws.com:5000/get_coach_types', true);
+          	        // //r
+                        requestform22.send();
+
+
+
+
+                        var requestform23 = new XMLHttpRequest();
+
+                          requestform23.onreadystatechange = function () {
+
+                                      // Begin accessing JSON data here
+                                     if (this.readyState == 4 && this.status == 200) {
+                                           console.log(this.responseText);
+
+
+
+                                           //  var div2 = document.createElement('div');
+                                                                     JSON.parse(this.responseText).athelete_ids.forEach(function(option){
+                                                                         var div3 = document.createElement('option');
+                                                                         console.log(option);
+                                                                         div3.innerHTML=option.name;
+                                                                         div3.value=option.id;
+
+
+                         document.getElementById('selecttype2').appendChild(div3)
+
+                                                                     })
+
+                                           }
+                                           }
+
+                              requestform23.open('GET', 'http://ec2-54-201-123-10.us-west-2.compute.amazonaws.com:5000/get_athelete_ids?coachid=dev1234', true);
+                                  	        // //r
+                                                requestform23.send();
+
+
+
+
+       $('#rolecoach').click(function(e) {
+            $('#dismissathelete3').css("display",'none');
+           $('#dismissathelete3coach').css("display",'block');
+        /*   $('#selectathelete').css("display",'block');
+            $('#selectathelete2').css("display",'block');
+           $('#showathelete2').css("display",'block');
+
+           $('#dismissathelete').css("display",'none');
+           $('#dismissathelete2').css("display",'none');
+            $('#dismissathelete3').css("display",'none');*/
+           });
+
+        $('#dismissathelete3coach').click(function(e) {
+
+
+
+
+            var request34 = new XMLHttpRequest();
+                            	request34.onreadystatechange = function () {
+                            	     if (this.readyState == 4 && this.status == 200) {
+                            	         console.log(this.responseText)
+
+                            	          $('#selectathelete').css("display",'block');
+                                                                 $('#selectathelete2').css("display",'block');
+                                                                $('#showathelete2').css("display",'block');
+
+                                                                 $('#selectatheletes').css("display",'none');
+
+                                                                      $('#dismissathelete3coach').css("display",'none');
+                                                                       $('#dismissathelete3').css("display",'block')
+                            	     }
+
+                            	}
+                            	 request34.open('POST', 'http://ec2-54-201-123-10.us-west-2.compute.amazonaws.com:5000/register_user_info');
+                                  request34.send(JSON.stringify({"org":$("#org").val() ,"userid":localStorage.getItem('userinfo'), "age":$("#age").val() , "height":$("#Height").val(), "weight":$("#Weight").val(),"gender": ($("#Male").val() ? 'M' : "F"),"role":!$("#rolecoach").val(),"s_id":1 }))
+
+
+
+
+
+
+
+
+
+
+
+
+
+        });
+
+
+
+        $('#dismissathelete3').click(function(e) {
+
+
+
+
+
+ 	/*var request34 = new XMLHttpRequest();
+                	request34.onreadystatechange = function () {
+                	     if (this.readyState == 4 && this.status == 200) {
+                	         console.log(this.responseText)
+                	     }
+
+                	}
+                	 request34.open('GET', 'http://ec2-54-201-123-10.us-west-2.compute.amazonaws.com:5000/get_sports', true);
+                      request34.send(JSON.stringify({"org":$("#org").val() ,"userid":'devi1234', "age":$("#age").val() , "height":$("#Height").val(), "weight":$("#Weight").val(),"gender": ($("#Male").val() ? 'M' : "F"),"role":($("#rolecoach").val() ? false : true),"s_id":0 }))
+*/
+
+            if( $('#selectathelete2').css("display")=='block')
+                {
+                    console.log($('#selectathelete2'));
+
+                }
+
+
+
+
+
+                });
+
+
+
+
+
+
+       $('#selectatheletes').click(function(e) {
+                   $('#dismissathelete').css("display",'block');
+                           $('#dismissathelete2').css("display",'block');
+                            $('#dismissathelete3').css("display",'block');
+                          $('#selectatheletes').css("display",'none');
+
+
+
+                  });
+
+
+
+
+
+
+
+$('#roleathelete').click(function(e) {
+     $('#dismissathelete3coach').css("display",'none');
+           $('#selectathelete').css("display",'none');
+                      $('#selectathelete2').css("display",'none');
+
+           $('#dismissathelete').css("display",'block');
+           $('#dismissathelete2').css("display",'block');
+            $('#dismissathelete3').css("display",'block');
+            $('#showathelete2').css("display",'none');
+           });
+
+      $('#login-form-link').click(function(e) {
+  		$("#login-form").delay(100).fadeIn(100);
+   		$("#register-form").fadeOut(100);
+  		$('#register-form-link').removeClass('active');
+  		$(this).addClass('active');
+  		e.preventDefault();
+  	});
+  	$('#register-form-link').click(function(e) {
+  		$("#register-form").delay(100).fadeIn(100);
+   		$("#login-form").fadeOut(100);
+  		$('#login-form-link').removeClass('active');
+  		$(this).addClass('active');
+  		e.preventDefault();
+  	});
+
+
+
+  	$('#login-submit').click(function(e) {
+
+      		 $('#container1').css("display",'none');
+              	   $('#root').css("display",'block');
+              	   localStorage.setItem('userinfo','dev1234');
+
+      	});
+
+
+
+
+
+  	  	$('#form-submit2').click(function(e) {
+
+
+  	  $('#container3').css("display",'none');
+  	   $('#root').css("display",'block');
+      	   // console.log(($("#org").val().length) ,($("#age").val().length) , ($("#Weight").val().length) );
+
+
+
+              	});
+
+
+
+
+
+
+
+ 	$('#form-submit').click(function(e) {
+
+ 	    $('#container2').css("display",'none');
+        $('#container3').css("display",'block');
+  	   // console.log(($("#org").val().length) ,($("#age").val().length) , ($("#Weight").val().length) );
+  /*	      		if(($("#roleathelete").is(':checked')||$("#rolecoach").is(':checked'))&&($("#Male").is(':checked')||$("#Female").is(':checked')) && ($("#org").val().length>0) &&($("#age").val().length>0) && ($("#Weight").val().length>0) && ($("#Height").val().length>0) )
+            {
+                if($("#roleathelete").is(':checked'))
+                    var role=true;
+                else
+                    var role=false;
+
+                var sportid=1;
+
+                 if($("#Male").is(':checked'))
+                                    var gender='M';
+                                else
+                                    var gender='F';
+
+
+
+      		var requestform = new XMLHttpRequest();
+
+
+            requestform.onreadystatechange = function () {
+
+              // Begin accessing JSON data here
+             if (this.readyState == 4 && this.status == 200) {
+                   console.log(this.responseText);
+
+
+                      var request4 = new XMLHttpRequest();
+                                                                                                                                                 	 request4.onreadystatechange = function () {
+
+                                                                                                                                                                      // Begin accessing JSON data here
+                                                                                                                                                                     if (this.readyState == 4 && this.status == 200) {
+                                                                                                                                                                           console.log(JSON.parse(this.responseText))
+
+                                                                                                                                                                           var div = document.getElementById('questionform');
+                                                                                                                                                                           var fragment = document.createDocumentFragment();
+
+                                                                                                                                                                           JSON.parse(this.responseText).forEach(function(option, index) {
+                                                                                                                                                                               var div2 = document.createElement('div');
+                                                                                                                                                                               var div3 = document.createElement('div');
+                                                                                                                                                                               var label1=document.createElement('label');
+                                                                                                                                                                                var label2=document.createElement('label');
+                                                                                                                                                                               var radio1 = document.createElement('radio');
+                                                                                                                                                                                var radio2=document.createElement('radio');
+
+                                                                                                                                                                               div3.innerHTML = option.qst;
+                                                                                                                                                                               label1.innerHTML='Yes';
+
+                                                                                                                                                                               label2.innerHTML='No';
+                                                                                                                                                                               div3.id=option.q_id;
+                                                                                                                                                                               radio1.id=option.q_id+'Y';
+                                                                                                                                                                               radio2.id=option.q_id+'N'
+
+                                                                                                                                                                               div2.appendChild(div3);
+                                                                                                                                                                               div2.appendChild(label1);
+
+                                                                                                                                                                               div2.appendChild(radio1);
+                                                                                                                                                                                div2.appendChild(label2);
+                                                                                                                                                                               div2.appendChild(radio2);
+
+                                                                                                                                                                               fragment.appendChild(div2);
+                                                                                                                                                                           });
+
+                                                                                                                                                                           div.appendChild(fragment);
+
+
+
+
+
+                                                                                                                                                                           }
+                                                                                                                                                                           }
+                                                                                                                                               request4.open('GET', 'http://ec2-54-201-123-10.us-west-2.compute.amazonaws.com:5000/get_questions', true);
+                                                                                                                                                  	        // //r
+                                                                                                                                                                request4.send();
+                 }
+            }
+
+            requestform.open('POST', 'http://ec2-54-201-123-10.us-west-2.compute.amazonaws.com:5000/register_user_info');
+	         //requestform.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              requestform.send(JSON.stringify({"userid":localStorage.getItem('userinfo') , "role":role ,"org":$("#org").val(), "age":$("#age").val(),"gender": gender,"height":$("#Height").val(),"weight":$("#Weight").val(),"s_id":sportid }))
+
+
+            }
+*/
+
+
+          	})
+
+
+  	$('#register-submit').click(function(e) {
+          		//console.log($("#usernamelogin").val())
+
+
+
+
+          		var request = new XMLHttpRequest();
+
+
+                request.onreadystatechange = function () {
+
+                  // Begin accessing JSON data here
+                 if (this.readyState == 4 && this.status == 200) {
+                       console.log(JSON.parse(this.responseText).avl);
+                       if(JSON.parse(this.responseText).avl===true)
+                       {
+console.log(this.responseText);
+
+
+                           	var request2 = new XMLHttpRequest();
+                           	   request2.onreadystatechange = function () {
+                                                            if (this.readyState == 4 && this.status == 200) {
+                                                                                  console.log(this.responseText)
+
+
+                                                                                  if(JSON.parse(this.responseText).msg===true)
+                                                                                      {
+                                                                                          localStorage.setItem('userinfo' , $("#usernamesignup").val());
+                                                                                  	var request3 = new XMLHttpRequest();
+                                                                                           	 request3.onreadystatechange = function () {
+
+                                                                                                                // Begin accessing JSON data here
+                                                                                                               if (this.readyState == 4 && this.status == 200) {
+                                                                                                                     console.log(JSON.parse(this.responseText))
+                                                                                                                     $('#container1').css("display",'none');
+                                                                                                                     $('#container2').css("display",'block');
+
+var sel = document.getElementById('options');
+var fragment = document.createDocumentFragment();
+
+JSON.parse(this.responseText).forEach(function(option, index) {
+    var opt = document.createElement('option');
+    opt.innerHTML = option.s_nsme;
+    opt.value = option.s_nsme;
+    opt.id=option.s_id
+
+    fragment.appendChild(opt);
+});
+
+sel.appendChild(fragment);
+
+
+
+
+
+
+                                                                                                                     }
+                                                                                                                     }
+                                                                                         request3.open('GET', 'http://ec2-54-201-123-10.us-west-2.compute.amazonaws.com:5000/get_sports', true);
+                                                                                            	        // //r
+                                                                                                          request3.send();
+                                                                                  }
+                                                            }
+                                                       }
+                            request2.open('POST', 'http://ec2-54-201-123-10.us-west-2.compute.amazonaws.com:5000/login_info');
+//request2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  //request.send("username=Henry&password=Ford&role=Athelete");
+
+request2.send(JSON.stringify({"userid":$("#usernamesignup").val() , "email":$("#emailsignup").val() , "password":$("#passwordsignup").val(),"name": $("#namesignup").val() }))
+
+const data={"userid": "0000000000",
+           	"name": "test0",
+           	"email": "test0@test.com",
+           	"password": "test1234"};
+
+
+fetch('https://httpbin.org/post', {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+
+
+        headers: {
+            'Accept': 'application/json',
+            "Content-Type": "application/json; charset=utf-8",
+            // "Content-Type": "application/x-www-form-urlencoded",
+        },
+         body: JSON.stringify({a: 1, b: 'Textual content'}) // body data type must match "Content-Type" header
+    })
+    .then(function(response) {
+
+
+
+    })
+                       }
+                     }
+                }
+
+                request.open('GET', 'http://ec2-54-201-123-10.us-west-2.compute.amazonaws.com:5000/is_uid_available?userid='+$("#usernamesignup").val(), true);
+    	        // //r
+                  request.send();
+
+
+
+          	});
+
+
+  });
+
+/*
+  // global user (is this a good thing?)
+  myUser = -1;
+
+  // Initialize Firebase
+  // TODO: Replace with your project's customized code snippet
+  var config = {
+    apiKey: "AIzaSyBPTuZqrfvrg6SGRKq4G_Ho5NYhPd4NG3M",
+       authDomain: "fir-react-693b0.firebaseapp.com",
+       databaseURL: "https://fir-react-693b0.firebaseio.com",
+       projectId: "fir-react-693b0",
+       storageBucket: "",
+       messagingSenderId: "85101411092"
+  };
+  firebase.initializeApp(config);
+
+  var ref = firebase.database().ref('users');
+
+        		ref.on("value", function(snapshot){
+        		    console.log('hi');
+                 console.log(JSON.stringify(snapshot.val(), null, 2))
+              });*/
+</script>
+
+
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1567561193573896&ev=PageView&noscript=1"/></noscript>
     <!-- End Facebook Pixel Code -->
 

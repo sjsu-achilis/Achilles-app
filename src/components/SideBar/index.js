@@ -23,6 +23,8 @@ class SideBar extends Component {
 
         <div className="brand">
           <a  className="brand-name">
+
+              <img width={200} src='https://i.ibb.co/V27KVfT/achilles-logo.jpg'></img>
           </a>
 
         </div>

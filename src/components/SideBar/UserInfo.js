@@ -18,7 +18,7 @@ class UserInfo extends Component {
           <img src={user.image} alt={user.name} className="photo" />
           <div className="userinfo">
             <div className="username">
-              {user.name}
+              dev1234
             </div>
             <div className="title"></div>
           </div>
@@ -30,8 +30,8 @@ class UserInfo extends Component {
         </div>
         <Collapse in={isShowingUserMenu}>
           <ul className="nav user-nav">
-            <li><a href="#">My Profile</a></li>
-            <li><a href="#">Edit Profile</a></li>
+            <li><a href="#/profile">My Profile</a></li>
+
             <li><a href="#">Settings</a></li>
           </ul>
         </Collapse>

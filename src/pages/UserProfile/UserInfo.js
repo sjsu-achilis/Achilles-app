@@ -11,15 +11,15 @@ const UserInfo = () => (
           <img className="avatar border-gray" src={profileImage} alt="Mike Andrew" />
 
           <h4 className="title">
-            Mike Andrew<br />
-            <small>michael24</small>
+              {localStorage['userinfo']}<br />
+
           </h4>
         </a>
       </div>
       <p className="description text-center">
-        "Lamborghini Mercy <br />
-        Your chick she so thirsty <br />
-        I'm in that two seat Lambo"
+        "Strive and thrive <br />
+        untill you   succeed"<br />
+
       </p>
     </div>
     <hr />

@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en" class="perfect-scrollbar-off">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,400,600,700" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.27&libraries=places,geometry&key=AIzaSyCSLXG5j-CqSB0zR476bJFXOSQ9sWuXqH0"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+
+ Include the above in your HEAD tag ---------->
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Crystal Dashboard</title>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+
+<style>
+
+.panel-login {
+	border-color: #ccc;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+.panel-login>.panel-heading {
+	color: #00415d;
+	background-color: #fff;
+	border-color: #fff;
+	text-align:center;
+}
+.panel-login>.panel-heading a{
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.panel-login>.panel-heading a.active{
+	color: #029f5b;
+	font-size: 18px;
+}
+.panel-login>.panel-heading hr{
+	margin-top: 10px;
+	margin-bottom: 0px;
+	clear: both;
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+	background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+	height: 45px;
+	border: 1px solid #ddd;
+	font-size: 16px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.panel-login input:hover,
+.panel-login input:focus {
+	outline:none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-color: #ccc;
+}
+.btn-login {
+	background-color: #59B2E0;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #59B2E6;
+}
+.btn-login:hover,
+.btn-login:focus {
+	color: #fff;
+	background-color: #53A3CD;
+	border-color: #53A3CD;
+}
+.forgot-password {
+	text-decoration: underline;
+	color: #888;
+}
+.forgot-password:hover,
+.forgot-password:focus {
+	text-decoration: underline;
+	color: #666;
+}
+
+.btn-register {
+	background-color: #1CB94E;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #1CB94A;
+}
+.btn-register:hover,
+.btn-register:focus {
+	color: #fff;
+	background-color: #1CA347;
+	border-color: #1CA347;
+}
+
+</style>
+<div class="container">
+    	<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="#" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div id="login-form"   style="display: block;">
+									<div class="form-group">
+										<input type="text" name="username" id="usernamelogin" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group">
+                                                                        									<input type="radio" id="roleatelete" name="role" value="">
+                                                                                                              <label for="Athelete">Athelete</label>
+                                    								</div>
+                                    									<div class="form-group">
+                                                                                                            									<input type="radio" id="rolecoach" name="role" value="">
+                                                                                                                                                  <label for="Coach">Coach</label>
+                                                                        									</div>
+									<div class="form-group text-center">
+										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+										<label for="remember"> Remember Me</label>
+									</div>
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit"  name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											</div>
+										</div>
+
+									<div class="form-group">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="text-center">
+													<a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div id="register-form" action="https://phpoll.com/register/process" method="post" role="form" style="display: none;">
+									<div class="form-group">
+										<input type="text" name="username" id="usernamesignup" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+                                    										<input type="text" name="name"  id="namesignup" tabindex="1" class="form-control" placeholder="Name" value="">
+                                    									</div>
+									<div class="form-group">
+										<input type="email" name="email" id="emailsignup" tabindex="1" class="form-control" placeholder="Email Address" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="passwordsignup" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+									</div>
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+ 	<div id="root"></div>
+
+ 	<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+
+     <!-- TRACKING WHO VISIT MY LIVE DEMO PAGE. PLEASE REMOVE THE LINE BELOW IF YOU ARE GOING TO USE IN YOUR PROJECT -->
+    <!-- Facebook Pixel Code -->
+    <script>
+
+
+  $(function() {
+
+      $('#login-form-link').click(function(e) {
+  		$("#login-form").delay(100).fadeIn(100);
+   		$("#register-form").fadeOut(100);
+  		$('#register-form-link').removeClass('active');
+  		$(this).addClass('active');
+  		e.preventDefault();
+  	});
+  	$('#register-form-link').click(function(e) {
+  		$("#register-form").delay(100).fadeIn(100);
+   		$("#login-form").fadeOut(100);
+  		$('#login-form-link').removeClass('active');
+  		$(this).addClass('active');
+  		e.preventDefault();
+  	});
+
+
+
+  	$('#login-submit').click(function(e) {
+      		console.log($("#usernamelogin").val())
+
+      		var request = new XMLHttpRequest();
+
+
+            request.onreadystatechange = function () {
+
+              // Begin accessing JSON data here
+             if (this.readyState == 4 && this.status == 200) {
+                   console.log(this.responseText);
+                 }
+            }
+
+            request.open('POST', 'https://ghibliapi.herokuapp.com/films', true);
+	         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              request.send("username=Henry&password=Ford&role=Athelete");
+
+
+
+      	});
+
+
+  	$('#register-submit').click(function(e) {
+          		console.log($("#usernamelogin").val())
+
+
+
+
+          		var request = new XMLHttpRequest();
+
+
+                request.onreadystatechange = function () {
+
+                  // Begin accessing JSON data here
+                 if (this.readyState == 4 && this.status == 200) {
+                       console.log(JSON.parse(this.responseText).avl);
+                       if(JSON.parse(this.responseText).avl===true)
+                       {
+console.log(this.responseText);
+
+
+                           	var request2 = new XMLHttpRequest();
+                           	   request2.onreadystatechange = function () {
+                                                            if (this.readyState == 4 && this.status == 200) {
+                                                                                  console.log(this.responseText);
+                                                                                  }
+                                                       }
+                            request2.open('POST', 'http://a27621ce.ngrok.io/login_info');
+request2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+request2.send(JSON.stringify({"userid":$("#usernamesignup").val() , "email":$("#emailsignup").val() , "password":$("#passwordsignup").val(),"name": $("#namesignup").val() }))
+
+const data={"userid": "0000000000",
+           	"name": "test0",
+           	"email": "test0@test.com",
+           	"password": "test1234"};
+
+
+fetch('https://httpbin.org/post', {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+
+
+        headers: {
+            'Accept': 'application/json',
+            "Content-Type": "application/json; charset=utf-8",
+            // "Content-Type": "application/x-www-form-urlencoded",
+        },
+         body: JSON.stringify({a: 1, b: 'Textual content'}) // body data type must match "Content-Type" header
+    })
+    .then(function(response) {
+         	var request3 = new XMLHttpRequest();
+         	 request3.onreadystatechange = function () {
+
+                              // Begin accessing JSON data here
+                             if (this.readyState == 4 && this.status == 200) {
+                                   console.log(JSON.parse(this.responseText))
+
+                                   var request4 = new XMLHttpRequest();
+                                            	 request4.onreadystatechange = function () {
+
+                                                                 // Begin accessing JSON data here
+                                                                if (this.readyState == 4 && this.status == 200) {
+                                                                      console.log(JSON.parse(this.responseText))
+                                                                      }
+                                                                      }
+                                          request4.open('GET', 'http://ec2-54-201-123-10.us-west-2.compute.amazonaws.com:5000/get_questions', true);
+                                             	        // request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                                                           request4.send();
+
+
+
+                                   }
+                                   }
+       request3.open('GET', 'http://ec2-54-201-123-10.us-west-2.compute.amazonaws.com:5000/get_sports', true);
+          	        // request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        request3.send();
+
+
+    })
+                       }
+                     }
+                }
+
+                request.open('GET', 'http://ec2-54-201-123-10.us-west-2.compute.amazonaws.com:5000/is_uid_available?userid='+$("#usernamesignup").val(), true);
+    	        // request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                  request.send();
+
+
+
+          	});
+
+
+  });
+
+/*
+  // global user (is this a good thing?)
+  myUser = -1;
+
+  // Initialize Firebase
+  // TODO: Replace with your project's customized code snippet
+  var config = {
+    apiKey: "AIzaSyBPTuZqrfvrg6SGRKq4G_Ho5NYhPd4NG3M",
+       authDomain: "fir-react-693b0.firebaseapp.com",
+       databaseURL: "https://fir-react-693b0.firebaseio.com",
+       projectId: "fir-react-693b0",
+       storageBucket: "",
+       messagingSenderId: "85101411092"
+  };
+  firebase.initializeApp(config);
+
+  var ref = firebase.database().ref('users');
+
+        		ref.on("value", function(snapshot){
+        		    console.log('hi');
+                 console.log(JSON.stringify(snapshot.val(), null, 2))
+              });*/
+</script>
+
+
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1567561193573896&ev=PageView&noscript=1"/></noscript>
+    <!-- End Facebook Pixel Code -->
+
+  </body>
+</html>
